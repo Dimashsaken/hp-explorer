@@ -63,13 +63,13 @@ export default function Home() {
           <div className="text-amber-400 text-4xl mb-4 flex justify-center">
             <FaDragon />
           </div>
-          <h2 className="text-2xl font-bold mb-3 text-center">Wizarding World</h2>
+          <h2 className="text-2xl font-bold mb-3 text-center">Magical Favorites</h2>
           <p className="text-gray-300 mb-4">
-            Immerse yourself in the rich lore and history of the magical universe created by J.K. Rowling, from Diagon Alley to Hogwarts.
+            Keep track of your favorite characters from the Harry Potter universe. Create your own personalized collection of magical beings.
           </p>
           <div className="text-center">
-            <Link href="/houses" className="text-amber-400 hover:text-amber-300 font-medium">
-              Begin Your Journey &rarr;
+            <Link href="/favorites" className="text-amber-400 hover:text-amber-300 font-medium">
+              View Favorites &rarr;
             </Link>
           </div>
         </div>
