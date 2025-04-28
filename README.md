@@ -2,7 +2,6 @@
 
 A magical web application that allows users to explore the universe of Harry Potter, including characters, houses, and more.
 
-![Harry Potter Explorer](/public/images/screenshot.svg)
 
 ## 🧙‍♂️ Overview
 
