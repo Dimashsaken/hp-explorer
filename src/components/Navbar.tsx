@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaHatWizard } from 'react-icons/fa';
+import { FaHatWizard, FaStar } from 'react-icons/fa';
 
 const Navbar = () => {
   return (
@@ -26,6 +26,9 @@ const Navbar = () => {
                 </Link>
                 <Link href="/characters" className="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium">
                   Characters
+                </Link>
+                <Link href="/favorites" className="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                  <FaStar className="mr-1" /> Favorites
                 </Link>
               </div>
             </div>

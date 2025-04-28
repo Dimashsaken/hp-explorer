@@ -4,11 +4,9 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Character } from '@/types';
 import Link from 'next/link';
-import { FaSearch, FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
-export default function CharactersPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [inputValue, setInputValue] = useState('');
+export default function FavoritesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState<string[]>([]);
   
@@ -23,24 +21,15 @@ export default function CharactersPage() {
   const ITEMS_PER_PAGE = 12;
 
   const { data: characters = [], isLoading, error } = useQuery<Character[]>({
-    queryKey: ['characters', searchQuery],
+    queryKey: ['characters'],
     queryFn: async () => {
-      const apiUrl = searchQuery 
-        ? `/api/characters?name=${encodeURIComponent(searchQuery)}`
-        : '/api/characters';
-      
-      const response = await fetch(apiUrl);
+      const response = await fetch('/api/characters');
       if (!response.ok) {
         throw new Error('Failed to fetch characters');
       }
       return response.json();
     }
   });
-
-  const handleSearch = () => {
-    setSearchQuery(inputValue);
-    setCurrentPage(1);
-  };
 
   const toggleFavorite = (id: string) => {
     setFavorites(prev => {
@@ -53,8 +42,13 @@ export default function CharactersPage() {
     });
   };
 
-  const totalPages = Math.ceil(characters.length / ITEMS_PER_PAGE);
-  const paginatedCharacters = characters.slice(
+  // Filter characters to only show favorites
+  const favoriteCharacters = characters.filter(character => 
+    favorites.includes(character.id)
+  );
+
+  const totalPages = Math.ceil(favoriteCharacters.length / ITEMS_PER_PAGE);
+  const paginatedCharacters = favoriteCharacters.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -74,37 +68,18 @@ export default function CharactersPage() {
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-amber-400 mb-4">Characters</h1>
+        <h1 className="text-4xl font-bold text-amber-400 mb-4">Favorite Characters</h1>
         <p className="text-xl max-w-3xl mx-auto text-gray-300">
-          Discover the witches, wizards, and magical beings from the world of Harry Potter.
+          Your collection of favorite characters from the wizarding world.
         </p>
       </div>
 
-      <div className="relative max-w-md mx-auto mb-8">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <FaSearch className="text-gray-400" />
-        </div>
-        <div className="flex">
-          <input
-            type="text"
-            placeholder="Search characters..."
-            className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-l-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-          />
-          <button
-            onClick={handleSearch}
-            className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-r-lg focus:outline-none"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-
-      {paginatedCharacters.length === 0 ? (
+      {favoriteCharacters.length === 0 ? (
         <div className="text-center py-10 text-gray-400">
-          No characters found. Try a different search term.
+          <p>You haven't added any favorite characters yet.</p>
+          <Link href="/characters" className="text-amber-400 hover:text-amber-300 mt-4 inline-block">
+            Go to Characters Page
+          </Link>
         </div>
       ) : (
         <>
@@ -137,7 +112,7 @@ export default function CharactersPage() {
                     }}
                     className="absolute top-2 right-2 p-2 rounded-full bg-gray-800/70 hover:bg-gray-700"
                   >
-                    <FaStar className={favorites.includes(character.id) ? "text-amber-400" : "text-gray-400"} />
+                    <FaStar className="text-amber-400" />
                   </button>
                 </div>
                 
