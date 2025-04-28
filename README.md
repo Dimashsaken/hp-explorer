@@ -57,14 +57,17 @@ npm run dev
 ```
 /
 ├── public/            # Static assets
-│   └── images/        # Images used in the app
+│   └── images/        # Images used in the app (house emblems, screenshot)
 ├── src/               # Source code
 │   ├── app/           # Next.js app router
 │   │   ├── api/       # API routes
 │   │   ├── houses/    # Houses pages
-│   │   └── characters/# Characters pages
+│   │   ├── characters/# Characters pages  
+│   │   └── favorites/ # Favorites page
 │   ├── components/    # Reusable components
 │   ├── data/          # Static data
+│   ├── lib/           # Utility functions
+│   ├── services/      # API services
 │   └── types/         # TypeScript types
 └── README.md          # Project documentation
 ```
