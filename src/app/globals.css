@@ -1,26 +1,61 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gryffindor-primary: #740001;
+  --gryffindor-secondary: #D3A625;
+  --slytherin-primary: #1A472A;
+  --slytherin-secondary: #AAAAAA;
+  --ravenclaw-primary: #0E1A40;
+  --ravenclaw-secondary: #946B2D;
+  --hufflepuff-primary: #ECB939;
+  --hufflepuff-secondary: #000000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.house-badge {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  border-radius: 9999px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.house-badge-gryffindor {
+  background-color: var(--gryffindor-primary);
+  color: white;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.house-badge-slytherin {
+  background-color: var(--slytherin-primary);
+  color: white;
+}
+
+.house-badge-ravenclaw {
+  background-color: var(--ravenclaw-primary);
+  color: white;
+}
+
+.house-badge-hufflepuff {
+  background-color: var(--hufflepuff-primary);
+  color: black;
+}
+
+/* House background gradients */
+.bg-gryffindor {
+  background: linear-gradient(135deg, var(--gryffindor-primary) 0%, #9a0000 100%);
+}
+
+.bg-slytherin {
+  background: linear-gradient(135deg, var(--slytherin-primary) 0%, #265c3b 100%);
+}
+
+.bg-ravenclaw {
+  background: linear-gradient(135deg, var(--ravenclaw-primary) 0%, #223a6b 100%);
+}
+
+.bg-hufflepuff {
+  background: linear-gradient(135deg, var(--hufflepuff-primary) 0%, #ffcc00 100%);
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#740001"/>
+  <path d="M100 30c-20 0-40 15-50 30 15-5 30-5 50-5s35 0 50 5c-10-15-30-30-50-30z" fill="#D3A625"/>
+  <path d="M60 80c0 25 20 45 40 45s40-20 40-45c-10-5-25-10-40-10s-30 5-40 10z" fill="#D3A625"/>
+  <path d="M70 140l-10 30h80l-10-30c-10 5-20 7-30 7s-20-2-30-7z" fill="#D3A625"/>
+</svg> 
