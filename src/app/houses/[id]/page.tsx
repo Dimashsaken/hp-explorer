@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { House } from '@/types';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa';
 
 export default function HouseDetailPage() {
@@ -68,12 +69,21 @@ export default function HouseDetailPage() {
         }}
       >
         <div className="p-8">
-          <h1 
-            className="text-4xl font-bold mb-4" 
-            style={{ color: getPrimaryColor() }}
-          >
-            {house.name}
-          </h1>
+          <div className="flex items-center gap-4 mb-4">
+            <Image 
+              src={`/images/${house.name.toLowerCase()}.svg`} 
+              alt={`${house.name} logo`}
+              width={80}
+              height={80}
+              className="w-20 h-20"
+            />
+            <h1 
+              className="text-4xl font-bold" 
+              style={{ color: getPrimaryColor() }}
+            >
+              {house.name}
+            </h1>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>

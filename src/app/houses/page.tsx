@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { House } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -46,12 +47,21 @@ export default function HousesPage() {
             className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 block"
           >
             <div className="p-6 space-y-4">
-              <h2 className="text-2xl font-bold" style={{ color: house.colors[0].toLowerCase() === 'scarlet' ? '#BF4040' : 
+              <div className="flex items-center gap-3">
+                <Image 
+                  src={`/images/${house.name.toLowerCase()}.svg`} 
+                  alt={`${house.name} logo`}
+                  width={50}
+                  height={50}
+                  className="w-12 h-12"
+                />
+                <h2 className="text-2xl font-bold" style={{ color: house.colors[0].toLowerCase() === 'scarlet' ? '#BF4040' : 
                                                         house.colors[0].toLowerCase() === 'yellow' ? '#F0C75E' : 
                                                         house.colors[0].toLowerCase() === 'blue' ? '#5555FF' : 
                                                         house.colors[0].toLowerCase() === 'green' ? '#2E8B57' : '#FFFFFF' }}>
-                {house.name}
-              </h2>
+                  {house.name}
+                </h2>
+              </div>
               <div className="flex items-center text-gray-300 gap-2">
                 <span className="font-medium">Founded by:</span> {house.founder}
               </div>

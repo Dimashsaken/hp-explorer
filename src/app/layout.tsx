@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { QueryClientProvider } from "@/components/QueryClientProvider";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,7 @@ export default function RootLayout({
           <main className="container mx-auto px-4 py-8">
             {children}
           </main>
-          <footer className="py-6 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Harry Potter Explorer
-          </footer>
+          <Footer />
         </QueryClientProvider>
       </body>
     </html>
