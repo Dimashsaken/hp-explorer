@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Character } from '@/types';
 import Link from 'next/link';
@@ -9,13 +9,15 @@ import { FaSearch, FaStar } from 'react-icons/fa';
 export default function CharactersPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    if (typeof window !== 'undefined') {
-      const savedFavorites = localStorage.getItem('favorites');
-      return savedFavorites ? JSON.parse(savedFavorites) : [];
+  const [favorites, setFavorites] = useState<string[]>([]);
+  
+  // Use useEffect to load favorites from localStorage after component mounts
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
     }
-    return [];
-  });
+  }, []);
   
   const ITEMS_PER_PAGE = 12;
 
@@ -102,11 +104,14 @@ export default function CharactersPage() {
               >
                 <div className="relative">
                   <div 
-                    className="h-48 bg-gray-700 flex items-center justify-center overflow-hidden"
+                    className="aspect-square bg-gray-700 flex items-center justify-center overflow-hidden"
                     style={{
                       backgroundImage: character.image ? `url(${character.image})` : 'none',
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'top center',
+                      width: '100%',
+                      height: '0',
+                      paddingBottom: '100%'
                     }}
                   >
                     {!character.image && (
