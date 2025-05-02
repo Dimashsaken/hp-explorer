@@ -33,7 +33,7 @@ Harry Potter Explorer is a web application that provides an immersive experience
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/dimashsaken/harry-potter-explorer.git
+git clone https://github.com/Dimashsaken/harry-potter-explorer.git
 cd harry-potter-explorer
 ```
 
